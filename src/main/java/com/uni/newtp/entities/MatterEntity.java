@@ -1,6 +1,7 @@
 package com.uni.newtp.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,27 +10,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Entity
 @Data
-@Table( name = "teacher" )
-public class TeacherEntity implements Serializable{
+@Table( name = "matter" )
+public class MatterEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "name")
+	@Column( name = "name" )
 	private String name;
 	
-	@Column(name = "surname")
-	private String surname;
+	@Column( name = "schedule" )
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate schedule;
 	
-	@Column(name = "dni")
-	private String dni;
-	
-	@Column(name = "is_active")
-	private boolean isActive;
+	@Column( name = "number_max_students" )
+	private int numberMaxStudents;
+
 }
