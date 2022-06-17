@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uni.newtp.entities.TeacherEntity;
@@ -22,10 +24,16 @@ public class TeacherController {
 		return listResult;
 	}
 	
-	/******* Get All Teachers *******/
+	/******* Get One Teacher *******/
 	@GetMapping( value = "/teacher/{id}" )
 	public TeacherEntity getTeacher(@PathVariable Long id){
 		TeacherEntity getResult = teacherService.getOne(id);
 		return getResult;
+	}
+	
+	/******* Save Teacher *******/
+	@PostMapping( value = "/teacher" )
+	public void add(@RequestBody TeacherEntity teacher) {
+		teacherService.save(teacher);
 	}
 }
