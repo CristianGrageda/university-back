@@ -30,6 +30,6 @@ public class TeacherEntity implements Serializable{
 	@Column(name = "dni")
 	private String dni;
 	
-	@Column(name = "is_active")
+	@Column(name = "active")
 	private boolean isActive;
 }

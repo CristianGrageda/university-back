@@ -3,6 +3,7 @@ package com.uni.newtp.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,7 @@ public class TeacherController {
 	}
 	
 	/******* Save Teacher *******/
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping( value = "/teacher" )
 	public void add(@RequestBody TeacherEntity teacher) {
 		teacherService.save(teacher);
