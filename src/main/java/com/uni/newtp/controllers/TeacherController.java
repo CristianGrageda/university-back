@@ -9,26 +9,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uni.newtp.entities.TeacherEntity;
 import com.uni.newtp.services.impl.TeacherServiceImpl;
 
 @RestController
+@RequestMapping("/teacher")
 @CrossOrigin
 public class TeacherController {
 	@Autowired
 	private TeacherServiceImpl teacherService;
 	
 	/******* Get All Teachers *******/
-	@GetMapping( value = "/teacher" )
+	@GetMapping( value = "/" )
 	public List<TeacherEntity> list(){
 		List<TeacherEntity> listResult = teacherService.getAll();
 		return listResult;
 	}
 	
 	/******* Get One Teacher *******/
-	@GetMapping( value = "/teacher/{id}" )
+	@GetMapping( value = "/{id}" )
 	public TeacherEntity getTeacher(@PathVariable Long id){
 		TeacherEntity getResult = teacherService.getOne(id);
 		return getResult;
@@ -36,7 +38,7 @@ public class TeacherController {
 	
 	/******* Save Teacher *******/
 	@PreAuthorize("hasRole('ADMIN')")
-	@PostMapping( value = "/teacher" )
+	@PostMapping( value = "/" )
 	public void add(@RequestBody TeacherEntity teacher) {
 		teacherService.save(teacher);
 	}
